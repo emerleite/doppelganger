@@ -146,3 +146,7 @@ footer.hidden { display: none; }
 #tally { font-size: 13px; color: #6e6e73; }
 #trash-btn { background: #ff3b30; }
 #trash-btn:hover:not(:disabled) { background: #d82d23; }
+
+.footer-actions { display: flex; gap: 8px; align-items: center; }
+button.secondary { background: #e5e5ea; color: #1d1d1f; }
+button.secondary:hover:not(:disabled) { background: #d8d8dd; }
