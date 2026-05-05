@@ -21,10 +21,10 @@ jobs:
         include:
           - platform: macos-latest
             target: aarch64-apple-darwin
-            args: --target aarch64-apple-darwin --bundles app
+            args: --target aarch64-apple-darwin
           - platform: macos-latest
             target: x86_64-apple-darwin
-            args: --target x86_64-apple-darwin --bundles app
+            args: --target x86_64-apple-darwin
           - platform: ubuntu-22.04
             target: x86_64-unknown-linux-gnu
             args: ''
@@ -108,7 +108,8 @@ jobs:
             Find duplicate and visually-similar photos. Move what you don't want to the system Trash (reversible).
 
             ### Downloads
-            - **macOS (Apple Silicon / Intel)** — `Doppelganger.app.tar.gz` (double-click to extract, drag to Applications)
+            - **macOS (Apple Silicon)** — `*-aarch64.dmg`
+            - **macOS (Intel)** — `*-x64.dmg`
             - **Windows** — `*-setup.exe` or `*.msi`
             - **Linux** — `*.AppImage` or `*.deb`
 
