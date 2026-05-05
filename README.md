@@ -14,6 +14,28 @@ Doppelganger finds **exact duplicates** and **visually-similar near-duplicates**
 - **Stays local** — your photos never leave your machine.
 - **State persisted** — close and reopen the app and you land back on your last scan, with the same checkboxes ticked.
 
+## Installing
+
+Grab the latest installer from the [Releases page](../../releases).
+
+### macOS
+
+The .dmg / .app are **unsigned** for now (see [Limitations](#limitations)), so the first launch will fail with:
+
+> "Doppelganger" is damaged and can't be opened. You should move it to the Trash.
+
+This is Gatekeeper rejecting an unsigned download — the app is **not** actually damaged. After dragging *Doppelganger.app* into `/Applications`, run this once in Terminal to clear the quarantine attribute the browser added:
+
+```bash
+xattr -d com.apple.quarantine /Applications/Doppelganger.app
+```
+
+Then double-click the app and it'll open normally. (Adjust the path if you put the app somewhere other than `/Applications`.)
+
+### Windows & Linux
+
+Run the `.exe` / `.msi` installer or the `.AppImage` / `.deb` package directly — no extra steps.
+
 ## Quick start (development)
 
 Prerequisites: [Rust](https://rustup.rs/) (1.92+), [Bun](https://bun.sh/) (or Node 20+ / pnpm / npm), and platform-specific webview deps for [Tauri](https://tauri.app/start/prerequisites/).
