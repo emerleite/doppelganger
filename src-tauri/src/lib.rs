@@ -6,7 +6,7 @@ use std::path::Path;
 use std::path::PathBuf;
 
 use serde::{Deserialize, Serialize};
-use tauri::{AppHandle, Emitter, Manager};
+use tauri::{AppHandle, Emitter};
 
 #[derive(Serialize, Deserialize, Clone, Debug)]
 pub struct Photo {
@@ -109,10 +109,13 @@ pub fn run() {
             get_thumbnail,
             move_to_trash
         ])
-        .setup(|app| {
+        .setup(|_app| {
             #[cfg(debug_assertions)]
-            if let Some(window) = app.get_webview_window("main") {
-                window.open_devtools();
+            {
+                use tauri::Manager;
+                if let Some(window) = _app.get_webview_window("main") {
+                    window.open_devtools();
+                }
             }
             Ok(())
         })
