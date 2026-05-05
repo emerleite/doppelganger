@@ -1,0 +1,25 @@
+[package]
+name = "doppelganger"
+version = "0.1.0"
+description = "Find and trash duplicate or visually-similar photos"
+authors = ["Emerson Leite"]
+edition = "2021"
+
+[lib]
+name = "doppelganger_lib"
+crate-type = ["staticlib", "cdylib", "rlib"]
+
+[build-dependencies]
+tauri-build = { version = "2", features = [] }
+
+[dependencies]
+tauri = { version = "2", features = [] }
+tauri-plugin-dialog = "2"
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+czkawka_core = { git = "https://github.com/qarmin/czkawka", branch = "master" }
+trash = "5"
+crossbeam-channel = "0.5"
+tokio = { version = "1", features = ["sync", "macros", "rt-multi-thread"] }
+base64 = "0.22"
+once_cell = "1"
