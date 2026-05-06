@@ -20,6 +20,7 @@
       </span>
       <nav class="nav">
         <span class="version" id="version-badge">v0.1.0</span>
+        <a href="#download">Download</a>
         <a href="https://github.com/emerleite/doppelganger" target="_blank" rel="noopener">GitHub ↗</a>
       </nav>
     </header>
@@ -31,33 +32,11 @@
           Find duplicate and visually-similar photos in any folder. Move what you don't want
           to the system Trash &mdash; locally, reversibly, free.
         </p>
-        <div class="actions">
-          <a class="btn primary" href="#download">Download</a>
-          <a class="btn ghost" href="https://github.com/emerleite/doppelganger" target="_blank" rel="noopener">Source code</a>
-        </div>
       </section>
 
       <figure class="screenshot">
         <img src="screenshot.png" alt="Screenshot of Doppelganger showing two clusters of similar photos with a suggested keeper marked in green and the rest pre-checked for the Trash." width="1180" height="820" loading="lazy" />
       </figure>
-
-      <section class="steps" id="how">
-        <h2>How it works</h2>
-        <ol>
-          <li>
-            <h3><span class="num">1.</span> Point it at a folder</h3>
-            <p>Pick any directory &mdash; <code>Downloads</code>, an export, an external drive. Doppelganger walks the tree and skips your Photos library bundle.</p>
-          </li>
-          <li>
-            <h3><span class="num">2.</span> It finds the twins</h3>
-            <p>First pass: byte-identical duplicates (content hash). Second pass: visually similar &mdash; resized, recompressed, slightly cropped &mdash; via perceptual hashing.</p>
-          </li>
-          <li>
-            <h3><span class="num">3.</span> You choose what stays</h3>
-            <p>Each cluster gets a suggested keeper. Untick anything you want to keep, hit <em>Move to Trash</em>. Recover with Finder &ldquo;Put Back&rdquo; if you change your mind.</p>
-          </li>
-        </ol>
-      </section>
 
       <section class="download" id="download">
         <h2>Download</h2>
@@ -83,11 +62,44 @@
             <span class="platform-action" id="dl-linux">.AppImage</span>
           </a>
         </div>
-
         <p class="note">
           <strong>macOS:</strong> the build is unsigned. After dragging it into Applications, run this once:
         </p>
         <pre><code>xattr -d com.apple.quarantine /Applications/Doppelganger.app</code></pre>
+      </section>
+
+      <section class="steps" id="how">
+        <h2>How it works</h2>
+        <ol>
+          <li>
+            <h3><span class="num">1.</span> Point it at a folder</h3>
+            <p>Pick any directory &mdash; <code>Downloads</code>, an export, an external drive. Doppelganger walks the tree and skips your Photos library bundle.</p>
+          </li>
+          <li>
+            <h3><span class="num">2.</span> It finds the twins</h3>
+            <p>First pass: byte-identical duplicates (content hash). Second pass: visually similar &mdash; resized, recompressed, slightly cropped &mdash; via perceptual hashing.</p>
+          </li>
+          <li>
+            <h3><span class="num">3.</span> You choose what stays</h3>
+            <p>Each cluster gets a suggested keeper. Untick anything you want to keep, hit <em>Move to Trash</em>. Recover with Finder &ldquo;Put Back&rdquo; if you change your mind.</p>
+          </li>
+        </ol>
+      </section>
+
+      <section class="build" id="build">
+        <h2>Build from source</h2>
+        <p>
+          Prerequisites: <a href="https://rustup.rs/" target="_blank" rel="noopener">Rust</a> 1.92+,
+          <a href="https://bun.sh/" target="_blank" rel="noopener">Bun</a> (or Node 20+ / npm / pnpm),
+          and your platform's
+          <a href="https://tauri.app/start/prerequisites/" target="_blank" rel="noopener">Tauri prerequisites</a>
+          (webview deps on Linux, Xcode CLT on macOS, MS Build Tools on Windows).
+        </p>
+        <pre><code>git clone https://github.com/emerleite/doppelganger
+cd doppelganger
+bun install
+bun run tauri dev      # run from source
+bun run tauri build    # produce a release bundle in src-tauri/target/release/</code></pre>
       </section>
     </main>
 
