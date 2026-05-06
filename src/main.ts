@@ -51,7 +51,6 @@ const results = $("results");
 const footer = $("footer");
 const tally = $("tally");
 const trashBtn = $<HTMLButtonElement>("trash-btn");
-const toggleAllBtn = $<HTMLButtonElement>("toggle-all");
 
 let selectedFolder: string | null = null;
 let lastResult: ScanResult | null = null;
@@ -245,7 +244,7 @@ function renderPhoto(p: Photo, isKeeper: boolean): HTMLElement {
   const thumbWrap = el("div", { class: "thumb-wrap" }, el("span", { class: "thumb-loading" }, "…"));
   const cls = "photo " + (isChecked ? "delete" : (isKeeper ? "keeper" : ""));
   const tile = el("div",
-    { class: cls, dataset: { path: p.path, keeper: String(isKeeper) } },
+    { class: cls, dataset: { path: p.path } },
     isKeeper ? el("span", { class: "keeper-tag" }, "KEEP") : null,
     thumbWrap,
     el("div", { class: "meta" },
@@ -297,31 +296,7 @@ function updateTally() {
     trashBtn.disabled = false;
     trashBtn.textContent = `Move ${checkedPaths.size} to Trash`;
   }
-  // Toggle-all button label reflects the current state.
-  const total = pathToSize.size;
-  toggleAllBtn.textContent =
-    total > 0 && checkedPaths.size === total ? "Deselect all" : "Select all";
-  toggleAllBtn.disabled = total === 0;
 }
-
-toggleAllBtn.addEventListener("click", () => {
-  const total = pathToSize.size;
-  if (total === 0) return;
-  const target = checkedPaths.size !== total; // true → check everything; false → uncheck
-  for (const tile of results.querySelectorAll<HTMLElement>(".photo")) {
-    const cb = tile.querySelector<HTMLInputElement>("input[type=checkbox]");
-    if (!cb || cb.checked === target) continue;
-    cb.checked = target;
-    const path = tile.dataset.path!;
-    if (target) checkedPaths.add(path);
-    else checkedPaths.delete(path);
-    const isKeeper = tile.dataset.keeper === "true";
-    tile.classList.toggle("delete", target);
-    tile.classList.toggle("keeper", isKeeper && !target);
-  }
-  updateTally();
-  saveState();
-});
 
 trashBtn.addEventListener("click", async () => {
   if (checkedPaths.size === 0) return;
