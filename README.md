@@ -63,7 +63,7 @@ Pushing a `v*` tag (or running the **Release** workflow manually from the Action
 - Linux (x64)
 - Windows (x64)
 
-…and creates a draft GitHub Release with all artifacts attached. Code-signing slots for macOS are scaffolded — add the relevant secrets to the repo and uncomment the `env:` block to ship signed builds.
+…and publishes a public GitHub Release with all artifacts attached. Code-signing slots for macOS are scaffolded — add the relevant secrets to the repo and uncomment the `env:` block to ship signed builds.
 
 ## Tests
 

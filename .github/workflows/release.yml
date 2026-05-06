@@ -114,6 +114,6 @@ jobs:
             - **Linux** — `*.AppImage` or `*.deb`
 
             **Note**: macOS builds are unsigned; right-click the .app → Open the first time, or run `xattr -d com.apple.quarantine /Applications/Doppelganger.app`.
-          releaseDraft: true
+          releaseDraft: false
           prerelease: false
           args: ${{ matrix.args }}
